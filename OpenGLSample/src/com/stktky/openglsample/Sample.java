@@ -2,21 +2,30 @@ package com.stktky.openglsample;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 
 public class Sample extends Activity {
 
+	SampleGlView glView;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sample);
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+
+	    glView = new SampleGlView(this);
+	    setContentView(glView);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_sample, menu);
-		return true;
+	protected void onResume(){
+	  super.onResume();
+	  glView.onResume();
 	}
+
+	@Override
+	protected void onPause(){
+	  super.onPause();
+	  glView.onPause();
+	}
+
 
 }
